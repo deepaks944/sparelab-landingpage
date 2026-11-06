@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar.jsx";
 import HeroSection from "./components/HeroSection.jsx";
 import CountersSection from "./components/CountersSection.jsx";
 import SupplierBrandsSection from "./components/SupplierBrandsSection.jsx";
+import ReviewsSection from "./components/ReviewsSection.jsx";
 import BenefitsSection from "./components/BenefitsSection.jsx";
 import CategoriesSection from "./components/CategoriesSection.jsx";
 import AudienceSection from "./components/AudienceSection.jsx";
@@ -82,6 +83,7 @@ function App() {
       <HeroSection />
       <CountersSection />
       <SupplierBrandsSection />
+      <ReviewsSection />
       <BenefitsSection />
       <CategoriesSection />
       <AudienceSection />

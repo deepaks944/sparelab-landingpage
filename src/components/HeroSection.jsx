@@ -12,6 +12,14 @@ const previewScenes = [
     art: "stats",
   },
   {
+    label: "Automotive parts catalogue",
+    title: "Find the parts that keep vehicles moving.",
+    detail: "Browse common maintenance and replacement parts with vehicle fitment in mind.",
+    status: "Filters · Brakes · Ignition · Bearings",
+    color: "from-sky-100/80 via-white/80 to-indigo-100/80 dark:from-sky-950/70 dark:via-slate-900/80 dark:to-indigo-950/70",
+    art: "parts",
+  },
+  {
     label: "Demand capture",
     title: "Request the part. SpareLab coordinates the rest.",
     detail: "Search, check fitment, or send an enquiry. In Phase 1, SpareLab staff coordinate sourcing on your behalf.",
@@ -35,6 +43,15 @@ const previewScenes = [
     color: "from-amber-100/80 via-white/80 to-orange-100/80 dark:from-amber-950/50 dark:via-slate-900/80 dark:to-orange-950/50",
     art: "delivery",
   },
+];
+
+const catalogueParts = [
+  { name: "Oil filter", type: "oil-filter" },
+  { name: "Air filter", type: "air-filter" },
+  { name: "Brake pads", type: "brake-pads" },
+  { name: "Spark plug", type: "spark-plug" },
+  { name: "Wheel bearing", type: "bearing" },
+  { name: "Alternator", type: "alternator" },
 ];
 
 function SceneArt({ type }) {
@@ -62,6 +79,75 @@ function SceneArt({ type }) {
                 index === 3 ? "w-full" : index === 2 ? "w-4/5" : "w-3/5"
               }`}
             />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (type === "parts") {
+    return (
+      <div
+        aria-hidden="true"
+        className="grid h-full w-full grid-cols-3 grid-rows-2 gap-1.5 rounded-2xl border border-white/60 bg-white/70 p-2 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-slate-950/65 sm:gap-2 sm:p-3"
+      >
+        {catalogueParts.map((part) => (
+          <div
+            key={part.name}
+            className="flex min-w-0 flex-col items-center justify-center rounded-lg border border-slate-200/70 bg-white/80 p-1 text-slate-600 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-300 sm:rounded-xl sm:p-2"
+          >
+            <svg
+              viewBox="0 0 64 48"
+              fill="none"
+              className="h-7 w-9 text-emerald-700 dark:text-emerald-400 sm:h-10 sm:w-12"
+            >
+              {part.type === "oil-filter" && (
+                <>
+                  <path d="M22 8h20l4 7v24H18V15l4-7Z" fill="currentColor" fillOpacity=".18" stroke="currentColor" strokeWidth="2.5" />
+                  <path d="M22 8h20M18 18h28m-28 5h28m-28 5h28m-28 5h28" stroke="currentColor" strokeWidth="2" />
+                  <path d="M26 8V5h12v3" stroke="currentColor" strokeWidth="2.5" />
+                </>
+              )}
+              {part.type === "air-filter" && (
+                <>
+                  <path d="M8 16 17 9h30l9 7v21H8V16Z" fill="currentColor" fillOpacity=".16" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                  <path d="m18 11-6 7m14-8-6 9m14-9-6 9m14-9-6 9m12-2-6 8M12 25h40" stroke="currentColor" strokeWidth="2" />
+                </>
+              )}
+              {part.type === "brake-pads" && (
+                <>
+                  <path d="M12 16q0-5 5-5h12v27H12V16Zm25-5h10q5 0 5 5v22H37V11Z" fill="currentColor" fillOpacity=".2" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                  <path d="M18 17h5m-5 6h5m20-6h5m-5 6h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </>
+              )}
+              {part.type === "spark-plug" && (
+                <>
+                  <path d="M25 7h14v8l4 4v10h-6v8H27v-8h-6V19l4-4V7Z" fill="currentColor" fillOpacity=".18" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                  <path d="M25 12h14m-18 9h22m-15 8h8m-4 8v5m-5-2h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </>
+              )}
+              {part.type === "bearing" && (
+                <>
+                  <circle cx="32" cy="24" r="17" fill="currentColor" fillOpacity=".16" stroke="currentColor" strokeWidth="2.5" />
+                  <circle cx="32" cy="24" r="8" stroke="currentColor" strokeWidth="2.5" />
+                  <circle cx="32" cy="11" r="2" fill="currentColor" />
+                  <circle cx="43" cy="18" r="2" fill="currentColor" />
+                  <circle cx="39" cy="36" r="2" fill="currentColor" />
+                  <circle cx="25" cy="36" r="2" fill="currentColor" />
+                  <circle cx="21" cy="18" r="2" fill="currentColor" />
+                </>
+              )}
+              {part.type === "alternator" && (
+                <>
+                  <path d="m18 13 9-5h13l9 7 3 17-9 9H21l-8-8 2-15 3-5Z" fill="currentColor" fillOpacity=".18" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                  <circle cx="32" cy="24" r="8" stroke="currentColor" strokeWidth="2.5" />
+                  <path d="M32 16v16m-8-8h16m-19-9 5 5m12 12 5 5m0-22-5 5m-12 12-5 5" stroke="currentColor" strokeWidth="2" />
+                </>
+              )}
+            </svg>
+            <span className="mt-1 truncate text-[7px] font-semibold leading-tight text-slate-700 dark:text-slate-200 sm:text-[9px]">
+              {part.name}
+            </span>
           </div>
         ))}
       </div>
