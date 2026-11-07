@@ -2,6 +2,17 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+a,
+button,
+[role="button"],
+[role="tab"] {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 html {
   scrollbar-color: #059669 #dcebe4;
   scrollbar-width: thin;
@@ -36,6 +47,7 @@ html.dark::-webkit-scrollbar-thumb {
 
 .glass-page {
   min-height: 100vh;
+  view-transition-name: page-shell;
   background-color: #f1f7f4;
   background-image:
     radial-gradient(ellipse at 5% 10%, rgb(16 185 129 / 18%), transparent 34rem),
@@ -72,12 +84,20 @@ html.dark::-webkit-scrollbar-thumb {
     box-shadow 320ms ease;
 }
 
+.auth-navbar {
+  border-color: rgb(100 116 139 / 24%);
+}
+
 .dark .glass-panel {
   border-color: rgb(255 255 255 / 10%);
   background-color: rgb(15 23 42 / 48%);
   box-shadow:
     0 16px 40px rgb(0 0 0 / 18%),
     inset 0 1px 0 rgb(255 255 255 / 7%);
+}
+
+.dark .auth-navbar {
+  border-color: rgb(255 255 255 / 18%);
 }
 
 .glass-inset {
@@ -137,15 +157,15 @@ html.dark::-webkit-scrollbar-thumb {
   -webkit-backdrop-filter: blur(22px) saturate(145%);
 }
 
-::view-transition-old(root) {
+::view-transition-old(page-shell) {
   animation: none;
 }
 
-::view-transition-new(root) {
+::view-transition-new(page-shell) {
   animation: theme-screen-drag 1200ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
 }
 
-::view-transition-group(root) {
+::view-transition-group(page-shell) {
   z-index: 1;
 }
 
@@ -196,6 +216,82 @@ html.dark::-webkit-scrollbar-thumb {
 
 .hero-load-in {
   animation: hero-rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.auth-card-drop {
+  animation: auth-card-fall 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+
+.auth-card-switch-drop {
+  animation: auth-card-switch-fall 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top center;
+}
+
+@keyframes auth-card-fall {
+  from {
+    opacity: 0;
+    transform: translateY(-56px) rotateX(5deg);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateY(5px) rotateX(-1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+@keyframes auth-card-switch-fall {
+  from {
+    opacity: 0.78;
+    transform: translateY(-22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-form-enter {
+  animation: auth-form-fall 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.auth-form-slide-enter {
+  animation: auth-form-switch-fall 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes auth-form-fall {
+  from {
+    opacity: 0;
+    transform: translateY(-48px) rotateX(5deg);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateY(5px) rotateX(-1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+@keyframes auth-form-switch-fall {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-delay-1 {
@@ -298,6 +394,13 @@ html.dark::-webkit-scrollbar-thumb {
     animation: none;
   }
 
+  .auth-form-enter,
+  .auth-form-slide-enter,
+  .auth-card-drop,
+  .auth-card-switch-drop {
+    animation: none;
+  }
+
   .hero-scroll-reveal {
     opacity: 1;
     transform: none;
@@ -336,7 +439,7 @@ html.dark::-webkit-scrollbar-thumb {
     transition-duration: 1ms;
   }
 
-  ::view-transition-new(root),
+  ::view-transition-new(page-shell),
   ::view-transition-new(theme-car),
   .theme-car {
     animation-duration: 1ms;
