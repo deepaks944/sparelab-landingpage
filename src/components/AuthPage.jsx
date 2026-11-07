@@ -66,9 +66,10 @@ function AuthPage({ isDarkMode, onToggleTheme }) {
         <div className="flex items-center gap-3">
           <Link
             to="/"
-            className="hidden text-sm font-medium text-slate-600 transition hover:text-emerald-700 sm:inline dark:text-slate-300 dark:hover:text-emerald-400"
+            className="text-xs font-medium text-slate-600 transition hover:text-emerald-700 sm:text-sm dark:text-slate-300 dark:hover:text-emerald-400"
           >
-            Back to home
+            <span className="sm:hidden">Home</span>
+            <span className="hidden sm:inline">Back to home</span>
           </Link>
           <ThemeToggle
             isDarkMode={isDarkMode}

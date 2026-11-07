@@ -72,21 +72,17 @@ function NavBar({ isDarkMode, onToggleTheme }) {
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <a
-            href="#request"
-            className="rounded-full bg-emerald-600 px-3 py-1.5 text-[10px] font-semibold text-white hover:bg-emerald-700"
-          >
-            Request a part
-          </a>
           <AccountMenu />
           <button
             type="button"
+            id="mobile-navigation-toggle"
             aria-label={
               menuOpen ? "Close navigation menu" : "Open navigation menu"
             }
+            aria-controls="mobile-navigation-menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
-            className="flex size-8 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+            className="flex h-8 items-center justify-center gap-1.5 rounded-full px-2 text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             {menuOpen ? (
               <svg
@@ -117,13 +113,20 @@ function NavBar({ isDarkMode, onToggleTheme }) {
                 />
               </svg>
             )}
+            <span className="text-[11px] font-medium">
+              {menuOpen ? "Close" : "Menu"}
+            </span>
           </button>
           <ThemeToggle isDarkMode={isDarkMode} onToggleTheme={onToggleTheme} />
         </div>
       </nav>
 
       {menuOpen && (
-        <div className="glass-panel absolute left-0 right-0 top-full mt-2 rounded-2xl border p-3 lg:hidden">
+        <div
+          id="mobile-navigation-menu"
+          aria-labelledby="mobile-navigation-toggle"
+          className="glass-panel absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border p-3 shadow-lg lg:hidden"
+        >
           <div className="flex flex-col">
             {links.map((link) => (
               <a
