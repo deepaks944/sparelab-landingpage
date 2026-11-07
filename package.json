@@ -5,7 +5,7 @@
   "homepage": "https://deepaks944.github.io/sparelab-landingpage/",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "node scripts/increment-build-number.js && npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
