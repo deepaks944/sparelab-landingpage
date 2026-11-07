@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { flushSync } from "react-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import HeroSection from "./components/HeroSection.jsx";
 import CountersSection from "./components/CountersSection.jsx";
@@ -12,6 +13,7 @@ import SourcingFormSection from "./components/SourcingFormSection.jsx";
 import FinalCtaSection from "./components/FinalCtaSection.jsx";
 import FooterSection from "./components/FooterSection.jsx";
 import BackToTopButton from "./components/BackToTopButton.jsx";
+import AuthPage from "./components/AuthPage.jsx";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -79,18 +81,44 @@ function App() {
           <circle cx="63" cy="35" r="2.5" fill="#d1d5db" />
         </svg>
       )}
-      <NavBar isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
-      <HeroSection />
-      <CountersSection />
-      <SupplierBrandsSection />
-      <ReviewsSection />
-      <BenefitsSection />
-      <CategoriesSection />
-      <AudienceSection />
-      <SourcingFormSection />
-      <FinalCtaSection />
-      <FooterSection />
-      <BackToTopButton />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <NavBar isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
+              <HeroSection />
+              <CountersSection />
+              <SupplierBrandsSection />
+              <ReviewsSection />
+              <BenefitsSection />
+              <CategoriesSection />
+              <AudienceSection />
+              <SourcingFormSection />
+              <FinalCtaSection />
+              <FooterSection />
+              <BackToTopButton />
+            </>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <AuthPage
+              isDarkMode={isDarkMode}
+              onToggleTheme={toggleTheme}
+            />
+          }
+        />
+        <Route
+          path="/signin"
+          element={<Navigate to="/account?mode=signin" replace />}
+        />
+        <Route
+          path="/signup"
+          element={<Navigate to="/account?mode=signup" replace />}
+        />
+      </Routes>
     </div>
   );
 }

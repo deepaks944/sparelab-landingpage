@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle.jsx";
+import AccountMenu from "./AccountMenu.jsx";
 
 const links = [
   { label: "How it works", href: "#features" },
@@ -66,12 +67,7 @@ function NavBar({ isDarkMode, onToggleTheme }) {
           >
             Request a part
           </a>
-          <a
-            href="#request"
-            className="rounded-full bg-emerald-600 px-4 py-2 text-[14px] font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
-          >
-            Request a part
-          </a>
+          <AccountMenu />
           <ThemeToggle isDarkMode={isDarkMode} onToggleTheme={onToggleTheme} />
         </div>
 
@@ -82,6 +78,7 @@ function NavBar({ isDarkMode, onToggleTheme }) {
           >
             Request a part
           </a>
+          <AccountMenu />
           <button
             type="button"
             aria-label={

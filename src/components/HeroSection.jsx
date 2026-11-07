@@ -309,7 +309,7 @@ function HeroSection() {
 
       <div
         ref={previewRef}
-        className="relative mt-8 h-[250vh] w-full max-w-[1120px] sm:mt-16"
+        className="relative mt-8 h-[150vh] w-full max-w-[1120px] sm:mt-16"
       >
         <div className="sticky top-16 flex h-[calc(100svh-4rem)] min-h-[420px] items-center sm:top-20 sm:h-[calc(100svh-5rem)] sm:min-h-[480px]">
           <div
