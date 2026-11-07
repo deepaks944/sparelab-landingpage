@@ -70,6 +70,63 @@ html.dark::-webkit-scrollbar-thumb {
   background-attachment: fixed;
 }
 
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgb(16 185 129 / 12%), transparent 22rem),
+    #f1f7f4;
+  color: #065f46;
+}
+
+.dark .app-loader {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgb(16 185 129 / 16%), transparent 22rem),
+    #07110e;
+  color: #6ee7b7;
+}
+
+.app-loader-mark {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 9999px;
+  background: #059669;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgb(5 150 105 / 25%);
+}
+
+.app-loader-spinner {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 2px solid rgb(5 150 105 / 18%);
+  border-top-color: currentColor;
+  border-radius: 9999px;
+  animation: app-loader-spin 700ms linear infinite;
+}
+
+.app-loader-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes app-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .glass-panel {
   border-color: rgb(255 255 255 / 75%);
   background-color: rgb(255 255 255 / 56%);
@@ -390,6 +447,10 @@ html.dark::-webkit-scrollbar-thumb {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .app-loader-spinner {
+    animation: none;
+  }
+
   .hero-load-in {
     animation: none;
   }

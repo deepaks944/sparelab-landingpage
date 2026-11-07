@@ -1,19 +1,47 @@
-import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { Navigate, Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar.jsx";
-import HeroSection from "./components/HeroSection.jsx";
-import CountersSection from "./components/CountersSection.jsx";
-import SupplierBrandsSection from "./components/SupplierBrandsSection.jsx";
-import ReviewsSection from "./components/ReviewsSection.jsx";
-import BenefitsSection from "./components/BenefitsSection.jsx";
-import CategoriesSection from "./components/CategoriesSection.jsx";
-import AudienceSection from "./components/AudienceSection.jsx";
-import SourcingFormSection from "./components/SourcingFormSection.jsx";
-import FinalCtaSection from "./components/FinalCtaSection.jsx";
-import FooterSection from "./components/FooterSection.jsx";
-import BackToTopButton from "./components/BackToTopButton.jsx";
-import AuthPage from "./components/AuthPage.jsx";
+
+const NavBar = lazy(() => import("./components/NavBar.jsx"));
+const HeroSection = lazy(() => import("./components/HeroSection.jsx"));
+const CountersSection = lazy(() => import("./components/CountersSection.jsx"));
+const SupplierBrandsSection = lazy(
+  () => import("./components/SupplierBrandsSection.jsx"),
+);
+const ReviewsSection = lazy(() => import("./components/ReviewsSection.jsx"));
+const BenefitsSection = lazy(() => import("./components/BenefitsSection.jsx"));
+const CategoriesSection = lazy(
+  () => import("./components/CategoriesSection.jsx"),
+);
+const AudienceSection = lazy(() => import("./components/AudienceSection.jsx"));
+const SourcingFormSection = lazy(
+  () => import("./components/SourcingFormSection.jsx"),
+);
+const FinalCtaSection = lazy(
+  () => import("./components/FinalCtaSection.jsx"),
+);
+const FooterSection = lazy(() => import("./components/FooterSection.jsx"));
+const BackToTopButton = lazy(
+  () => import("./components/BackToTopButton.jsx"),
+);
+const AuthPage = lazy(() => import("./components/AuthPage.jsx"));
+
+function PageLoader() {
+  return (
+    <div
+      className="app-loader"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading SpareLab"
+    >
+      <span className="app-loader-mark" aria-hidden="true">
+        S
+      </span>
+      <span className="app-loader-spinner" aria-hidden="true" />
+      <span className="app-loader-label">Loading SpareLab</span>
+    </div>
+  );
+}
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -81,44 +109,46 @@ function App() {
           <circle cx="63" cy="35" r="2.5" fill="#d1d5db" />
         </svg>
       )}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <NavBar isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
-              <HeroSection />
-              <CountersSection />
-              <SupplierBrandsSection />
-              <ReviewsSection />
-              <BenefitsSection />
-              <CategoriesSection />
-              <AudienceSection />
-              <SourcingFormSection />
-              <FinalCtaSection />
-              <FooterSection />
-              <BackToTopButton />
-            </>
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            <AuthPage
-              isDarkMode={isDarkMode}
-              onToggleTheme={toggleTheme}
-            />
-          }
-        />
-        <Route
-          path="/signin"
-          element={<Navigate to="/account?mode=signin" replace />}
-        />
-        <Route
-          path="/signup"
-          element={<Navigate to="/account?mode=signup" replace />}
-        />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <NavBar isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
+                <HeroSection />
+                <CountersSection />
+                <SupplierBrandsSection />
+                <ReviewsSection />
+                <BenefitsSection />
+                <CategoriesSection />
+                <AudienceSection />
+                <SourcingFormSection />
+                <FinalCtaSection />
+                <FooterSection />
+                <BackToTopButton />
+              </>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <AuthPage
+                isDarkMode={isDarkMode}
+                onToggleTheme={toggleTheme}
+              />
+            }
+          />
+          <Route
+            path="/signin"
+            element={<Navigate to="/account?mode=signin" replace />}
+          />
+          <Route
+            path="/signup"
+            element={<Navigate to="/account?mode=signup" replace />}
+          />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
