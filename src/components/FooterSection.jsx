@@ -81,19 +81,20 @@ function FooterSection() {
       </div>
       <div className="border-t border-white/60 bg-white/15 backdrop-blur-md dark:border-white/10 dark:bg-slate-950/15">
         <div className="mx-auto flex w-[calc(100%-2rem)] max-w-[1120px] flex-col gap-3 py-4 text-[10px] text-slate-400 dark:text-slate-500 sm:w-[calc(100%-3rem)] sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 SpareLab. All rights reserved.</span>
-          <span className="font-bold text-xl text-slate-500 dark:text-slate-400">
-            Build #{__BUILD_NUMBER__} · Built:{" "}
+          <span className="font-bold">
+            © 2026 SpareLab. All rights reserved.
+          </span>
+          <span className="font-bold text-md text-slate-500 dark:text-slate-400">
+            Build Version #{`0.0.0. ${__BUILD_NUMBER__}`} · Last Updated on:{" "}
             <time dateTime={__BUILD_DATE__}>
               {new Intl.DateTimeFormat("en-US", {
                 dateStyle: "medium",
                 timeStyle: "medium",
-                timeZone: "UTC",
-              }).format(new Date(__BUILD_DATE__))}{" "}
-              UTC
+              }).format(new Date(__BUILD_DATE__))}
+              {` IST`}
             </time>
           </span>
-          <div className="flex gap-5">
+          <div className="flex gap-5 font-bold">
             <a
               href="#privacy"
               className="hover:text-emerald-700 dark:hover:text-emerald-400"
@@ -102,7 +103,7 @@ function FooterSection() {
             </a>
             <a
               href="#features"
-              className="hover:text-emerald-700 dark:hover:text-emerald-400"
+              className="hover:text-emerald-700 dark:hover:text-emerald-400 font-bold"
             >
               How it works
             </a>
