@@ -83,7 +83,15 @@ function FooterSection() {
         <div className="mx-auto flex w-[calc(100%-2rem)] max-w-[1120px] flex-col gap-3 py-4 text-[10px] text-slate-400 dark:text-slate-500 sm:w-[calc(100%-3rem)] sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 SpareLab. All rights reserved.</span>
           <span className="font-bold text-xl text-slate-500 dark:text-slate-400">
-            Build: v{__APP_VERSION__}
+            Build #{__BUILD_NUMBER__} · Built:{" "}
+            <time dateTime={__BUILD_DATE__}>
+              {new Intl.DateTimeFormat("en-US", {
+                dateStyle: "medium",
+                timeStyle: "medium",
+                timeZone: "UTC",
+              }).format(new Date(__BUILD_DATE__))}{" "}
+              UTC
+            </time>
           </span>
           <div className="flex gap-5">
             <a
