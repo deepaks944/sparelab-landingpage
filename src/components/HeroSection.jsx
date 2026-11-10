@@ -1,8 +1,34 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import marketplaceStats from "../data/marketplaceStats.js";
 import spareParts from "../data/spareParts.js";
 import CountUp from "./CountUp.jsx";
-import SparePartsViewer from "./SparePartsViewer.jsx";
+
+const SparePartsViewer = lazy(() => import("./SparePartsViewer.jsx"));
+
+function PartsViewerSkeleton() {
+  return (
+    <div
+      className="absolute inset-0 flex items-center justify-center"
+      role="status"
+      aria-label="Loading 3D automotive parts"
+    >
+      <div className="flex flex-col items-center gap-6">
+        <div className="relative flex h-36 w-52 items-center justify-center sm:h-48 sm:w-64">
+          <span className="absolute h-24 w-32 animate-pulse rounded-2xl border border-emerald-900/10 bg-white/40 shadow-[0_24px_50px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-slate-800/40 sm:h-32 sm:w-40 motion-reduce:animate-none" />
+          <span className="absolute h-20 w-24 animate-pulse rounded-xl border border-emerald-900/10 bg-slate-200/50 dark:border-white/10 dark:bg-slate-700/50 sm:h-28 sm:w-32 motion-reduce:animate-none" />
+          <span className="absolute h-12 w-12 animate-pulse rounded-full border-4 border-emerald-900/10 bg-slate-300/50 dark:border-white/10 dark:bg-slate-600/50 motion-reduce:animate-none" />
+        </div>
+        <div className="w-40 space-y-2 sm:w-48">
+          <span className="block h-2.5 animate-pulse rounded-full bg-slate-300/70 dark:bg-slate-700/70 motion-reduce:animate-none" />
+          <span className="mx-auto block h-2 w-2/3 animate-pulse rounded-full bg-slate-200/80 dark:bg-slate-800/80 motion-reduce:animate-none" />
+          <span className="block text-center text-[10px] font-medium text-slate-500 dark:text-slate-400">
+            Preparing 3D parts
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const previewScenes = [
   {
@@ -553,7 +579,9 @@ function HeroSection() {
             className="glass-panel relative h-[min(76svh,680px)] min-h-[440px] w-full overflow-hidden rounded-[1.5rem] border text-left shadow-2xl sm:rounded-[1.8rem]"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-emerald-100/35 dark:from-slate-950/25 dark:to-emerald-950/25" />
-            <SparePartsViewer progress={scrollProgress} />
+            <Suspense fallback={<PartsViewerSkeleton />}>
+              <SparePartsViewer progress={scrollProgress} />
+            </Suspense>
 
             <div
               aria-hidden={!isPartHovered}

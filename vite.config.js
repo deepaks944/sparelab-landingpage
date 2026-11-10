@@ -26,6 +26,21 @@ function githubPagesSpaFallback() {
 export default defineConfig({
   plugins: [react(), tailwindcss(), githubPagesSpaFallback()],
   base: "/sparelab-landingpage/",
+  build: {
+    rolldownOptions: {
+      output: {
+        codeSplitting: {
+          groups: [
+            {
+              name: "three",
+              test: /node_modules[\\/]three[\\/]/,
+              maxSize: 400 * 1024,
+            },
+          ],
+        },
+      },
+    },
+  },
   define: {
     __BUILD_DATE__: JSON.stringify(buildDate),
     __BUILD_NUMBER__: JSON.stringify(buildNumber),

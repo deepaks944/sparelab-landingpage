@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 import spareParts from "../data/spareParts.js";
 
 function createSpareParts(THREE, scene) {
@@ -437,6 +438,7 @@ function SparePartsViewer({ progress }) {
   const viewerRef = useRef(null);
   const progressRef = useRef(progress);
   const [loadError, setLoadError] = useState("");
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const container = viewerRef.current;
@@ -451,19 +453,17 @@ function SparePartsViewer({ progress }) {
     };
     const viewerState = {
       started: false,
+      hasRendered: false,
       pointerX: null,
       rotation: 0,
       targetRotation: 0,
     };
 
-    const startViewer = async () => {
+    const startViewer = () => {
       if (viewerState.started) return;
       viewerState.started = true;
 
       try {
-        const THREE = await import("three");
-        if (!lifecycle.active) return;
-
         const renderer = new THREE.WebGLRenderer({
           alpha: true,
           antialias: true,
@@ -555,6 +555,10 @@ function SparePartsViewer({ progress }) {
             model.rotation.y = viewerState.rotation;
           });
           renderer.render(scene, camera);
+          if (!viewerState.hasRendered) {
+            viewerState.hasRendered = true;
+            setIsReady(true);
+          }
         });
       } catch (error) {
         console.error("Unable to initialize the spare-parts 3D viewer.", error);
@@ -573,7 +577,7 @@ function SparePartsViewer({ progress }) {
             (entries) => {
               if (entries.some((entry) => entry.isIntersecting)) {
                 intersectionObserver.disconnect();
-                void startViewer();
+                startViewer();
               }
             },
             { rootMargin: "200px" },
@@ -581,7 +585,7 @@ function SparePartsViewer({ progress }) {
     if (intersectionObserver) {
       intersectionObserver.observe(container);
     } else {
-      void startViewer();
+      startViewer();
     }
 
     return () => {
@@ -604,7 +608,30 @@ function SparePartsViewer({ progress }) {
       ref={viewerRef}
       className="absolute inset-0"
       aria-label="Interactive Three.js automotive parts viewer"
+      aria-busy={!isReady && !loadError}
     >
+      {!isReady && !loadError && (
+        <div
+          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+          role="status"
+          aria-label="Loading 3D automotive parts"
+        >
+          <div className="flex flex-col items-center gap-6">
+            <div className="relative flex h-36 w-52 items-center justify-center sm:h-48 sm:w-64">
+              <span className="absolute h-24 w-32 animate-pulse rounded-2xl border border-emerald-900/10 bg-white/40 shadow-[0_24px_50px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-slate-800/40 sm:h-32 sm:w-40 motion-reduce:animate-none" />
+              <span className="absolute h-20 w-24 animate-pulse rounded-xl border border-emerald-900/10 bg-slate-200/50 dark:border-white/10 dark:bg-slate-700/50 sm:h-28 sm:w-32 motion-reduce:animate-none" />
+              <span className="absolute h-12 w-12 animate-pulse rounded-full border-4 border-emerald-900/10 bg-slate-300/50 dark:border-white/10 dark:bg-slate-600/50 motion-reduce:animate-none" />
+            </div>
+            <div className="w-40 space-y-2 sm:w-48">
+              <span className="block h-2.5 animate-pulse rounded-full bg-slate-300/70 dark:bg-slate-700/70 motion-reduce:animate-none" />
+              <span className="mx-auto block h-2 w-2/3 animate-pulse rounded-full bg-slate-200/80 dark:bg-slate-800/80 motion-reduce:animate-none" />
+              <span className="block text-center text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                Preparing 3D parts
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
       {loadError && (
         <div
           className="absolute inset-4 z-20 flex items-center justify-center rounded-xl bg-white/70 p-5 text-center text-sm text-slate-600 dark:bg-slate-950/70 dark:text-slate-300"
