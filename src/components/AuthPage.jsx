@@ -4,11 +4,7 @@ import ThemeToggle from "./ThemeToggle.jsx";
 
 function BrandMark() {
   return (
-    <Link
-      to="/"
-      aria-label="SpareLab home"
-      className="flex items-center gap-2"
-    >
+    <Link to="/" aria-label="SpareLab home" className="flex items-center gap-2">
       <span className="flex size-8 items-center justify-center rounded-full bg-emerald-600">
         <svg
           aria-hidden="true"
@@ -52,7 +48,9 @@ function AuthPage({ isDarkMode, onToggleTheme }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setNotice("Account access is not connected yet. Your details were not submitted.");
+    setNotice(
+      "Account access is not connected yet. Your details were not submitted.",
+    );
   };
 
   return (
@@ -71,10 +69,7 @@ function AuthPage({ isDarkMode, onToggleTheme }) {
             <span className="sm:hidden">Home</span>
             <span className="hidden sm:inline">Back to home</span>
           </Link>
-          <ThemeToggle
-            isDarkMode={isDarkMode}
-            onToggleTheme={onToggleTheme}
-          />
+          <ThemeToggle isDarkMode={isDarkMode} onToggleTheme={onToggleTheme} />
         </div>
       </header>
 
@@ -97,17 +92,19 @@ function AuthPage({ isDarkMode, onToggleTheme }) {
             coordinated sourcing from enquiry to fulfilment.
           </p>
           <div className="mt-8 hidden flex-wrap gap-3 lg:flex">
-            {["Curated vendor network", "Clear quote coordination", "One accountable journey"].map(
-              (benefit) => (
-                <span
-                  key={benefit}
-                  className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200"
-                >
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  {benefit}
-                </span>
-              ),
-            )}
+            {[
+              "Curated vendor network",
+              "Clear quote coordination",
+              "One accountable journey",
+            ].map((benefit) => (
+              <span
+                key={benefit}
+                className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200"
+              >
+                <span className="size-1.5 rounded-full bg-emerald-500" />
+                {benefit}
+              </span>
+            ))}
           </div>
         </section>
 
@@ -147,7 +144,7 @@ function AuthPage({ isDarkMode, onToggleTheme }) {
               className={`min-h-10 rounded-full px-3 text-sm font-semibold transition ${
                 !isSignUp
                   ? "bg-emerald-600 text-white shadow-sm"
-                  : "text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400"
+                  : "text-slate-600 hover:bg-emerald-100/70 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-emerald-400/10 dark:hover:text-emerald-400"
               }`}
             >
               Sign in
@@ -162,7 +159,7 @@ function AuthPage({ isDarkMode, onToggleTheme }) {
               className={`min-h-10 rounded-full px-3 text-sm font-semibold transition ${
                 isSignUp
                   ? "bg-emerald-600 text-white shadow-sm"
-                  : "text-slate-600 hover:text-emerald-700 dark:text-slate-300 dark:hover:text-emerald-400"
+                  : "text-slate-600 hover:bg-emerald-100/70 hover:text-emerald-700 dark:text-slate-300 dark:hover:bg-emerald-400/10 dark:hover:text-emerald-400"
               }`}
             >
               Create account

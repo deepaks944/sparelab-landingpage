@@ -53,7 +53,7 @@ function AccountMenu() {
       <div
         role="menu"
         aria-label="Account"
-        className={`glass-panel absolute right-0 top-full z-50 mt-2 w-44 rounded-2xl border p-2 shadow-lg ${
+        className={`glass-panel absolute right-0 top-full z-50 w-44 rounded-2xl border p-2 shadow-lg before:absolute before:inset-x-0 before:-top-2 before:h-2 before:content-[''] ${
           isOpen ? "block" : "hidden"
         } group-hover:block group-focus-within:block`}
       >

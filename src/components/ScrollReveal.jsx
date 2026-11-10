@@ -19,7 +19,6 @@ function updateActiveReveal() {
     const emphasis = isInViewport
       ? Math.max(0, 1 - distance / fadeDistance)
       : 0;
-
     element.style.setProperty(
       "--scroll-opacity",
       (0.32 + emphasis * 0.68).toFixed(3),
