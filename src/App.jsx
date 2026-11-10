@@ -17,13 +17,9 @@ const AudienceSection = lazy(() => import("./components/AudienceSection.jsx"));
 const SourcingFormSection = lazy(
   () => import("./components/SourcingFormSection.jsx"),
 );
-const FinalCtaSection = lazy(
-  () => import("./components/FinalCtaSection.jsx"),
-);
+const FinalCtaSection = lazy(() => import("./components/FinalCtaSection.jsx"));
 const FooterSection = lazy(() => import("./components/FooterSection.jsx"));
-const BackToTopButton = lazy(
-  () => import("./components/BackToTopButton.jsx"),
-);
+const BackToTopButton = lazy(() => import("./components/BackToTopButton.jsx"));
 const AuthPage = lazy(() => import("./components/AuthPage.jsx"));
 
 function PageLoader() {
@@ -61,8 +57,14 @@ function App() {
 
     if (document.startViewTransition) {
       document.startViewTransition(applyTheme).finished.then(
-        () => setThemeCarId((currentId) => currentId === nextCarId ? null : currentId),
-        () => setThemeCarId((currentId) => currentId === nextCarId ? null : currentId),
+        () =>
+          setThemeCarId((currentId) =>
+            currentId === nextCarId ? null : currentId,
+          ),
+        () =>
+          setThemeCarId((currentId) =>
+            currentId === nextCarId ? null : currentId,
+          ),
       );
     } else {
       applyTheme();
@@ -133,10 +135,7 @@ function App() {
           <Route
             path="/account"
             element={
-              <AuthPage
-                isDarkMode={isDarkMode}
-                onToggleTheme={toggleTheme}
-              />
+              <AuthPage isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
             }
           />
           <Route
