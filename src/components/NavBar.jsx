@@ -4,7 +4,6 @@ import AccountMenu from "./AccountMenu.jsx";
 
 const links = [
   { label: "How it works", href: "#features" },
-  { label: "3D parts", href: "#parts-viewer" },
   { label: "For buyers", href: "#buyers" },
   { label: "For vendors", href: "#vendor-network" },
   { label: "Marketplace", href: "#marketplace" },

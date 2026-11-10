@@ -1,34 +1,7 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import marketplaceStats from "../data/marketplaceStats.js";
-import spareParts from "../data/spareParts.js";
 import CountUp from "./CountUp.jsx";
-
-const SparePartsViewer = lazy(() => import("./SparePartsViewer.jsx"));
-
-function PartsViewerSkeleton() {
-  return (
-    <div
-      className="absolute inset-0 flex items-center justify-center"
-      role="status"
-      aria-label="Loading 3D automotive parts"
-    >
-      <div className="flex flex-col items-center gap-6">
-        <div className="relative flex h-36 w-52 items-center justify-center sm:h-48 sm:w-64">
-          <span className="absolute h-24 w-32 animate-pulse rounded-2xl border border-emerald-900/10 bg-white/40 shadow-[0_24px_50px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-slate-800/40 sm:h-32 sm:w-40 motion-reduce:animate-none" />
-          <span className="absolute h-20 w-24 animate-pulse rounded-xl border border-emerald-900/10 bg-slate-200/50 dark:border-white/10 dark:bg-slate-700/50 sm:h-28 sm:w-32 motion-reduce:animate-none" />
-          <span className="absolute h-12 w-12 animate-pulse rounded-full border-4 border-emerald-900/10 bg-slate-300/50 dark:border-white/10 dark:bg-slate-600/50 motion-reduce:animate-none" />
-        </div>
-        <div className="w-40 space-y-2 sm:w-48">
-          <span className="block h-2.5 animate-pulse rounded-full bg-slate-300/70 dark:bg-slate-700/70 motion-reduce:animate-none" />
-          <span className="mx-auto block h-2 w-2/3 animate-pulse rounded-full bg-slate-200/80 dark:bg-slate-800/80 motion-reduce:animate-none" />
-          <span className="block text-center text-[10px] font-medium text-slate-500 dark:text-slate-400">
-            Preparing 3D parts
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
+import ProcurementFlow from "./ProcurementFlow.jsx";
 
 const previewScenes = [
   {
@@ -313,17 +286,8 @@ function SceneArt({ type }) {
 function HeroSection() {
   const previewRef = useRef(null);
   const previewZoomRef = useRef(null);
-  const partsTrackRef = useRef(null);
-  const animationFrameRef = useRef(0);
   const previewAnimationFrameRef = useRef(0);
   const [activeScene, setActiveScene] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isPartHovered, setIsPartHovered] = useState(false);
-  const activePartIndex = Math.min(
-    spareParts.length - 1,
-    Math.round(scrollProgress * (spareParts.length - 1)),
-  );
-  const activePart = spareParts[activePartIndex];
 
   useEffect(() => {
     const preview = previewRef.current;
@@ -378,47 +342,6 @@ function HeroSection() {
       window.removeEventListener("resize", requestZoomUpdate);
       if (previewAnimationFrameRef.current) {
         window.cancelAnimationFrame(previewAnimationFrameRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const track = partsTrackRef.current;
-    if (!track) return undefined;
-
-    const updateProgress = () => {
-      animationFrameRef.current = 0;
-      const { top, height } = track.getBoundingClientRect();
-      const stickyTop = window.matchMedia("(min-width: 640px)").matches
-        ? 80
-        : 64;
-      const scrollDistance = Math.max(
-        1,
-        height - (window.innerHeight - stickyTop),
-      );
-      const progress = Math.max(
-        0,
-        Math.min(1, (stickyTop - top) / scrollDistance),
-      );
-      setScrollProgress((current) =>
-        Math.abs(current - progress) < 0.002 ? current : progress,
-      );
-    };
-    const requestUpdate = () => {
-      if (!animationFrameRef.current) {
-        animationFrameRef.current = window.requestAnimationFrame(updateProgress);
-      }
-    };
-
-    updateProgress();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (animationFrameRef.current) {
-        window.cancelAnimationFrame(animationFrameRef.current);
       }
     };
   }, []);
@@ -565,45 +488,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div
-        id="parts-viewer"
-        ref={partsTrackRef}
-        className="relative mt-8 h-[520svh] w-full max-w-[1120px] sm:mt-16"
-      >
-        <div className="sticky top-16 flex h-[calc(100svh-4rem)] min-h-[440px] items-center sm:top-20 sm:h-[calc(100svh-5rem)] sm:min-h-[480px]">
-          <div
-            onPointerEnter={() => setIsPartHovered(true)}
-            onPointerLeave={() => setIsPartHovered(false)}
-            onFocusCapture={() => setIsPartHovered(true)}
-            onBlurCapture={() => setIsPartHovered(false)}
-            className="glass-panel relative h-[min(76svh,680px)] min-h-[440px] w-full overflow-hidden rounded-[1.5rem] border text-left shadow-2xl sm:rounded-[1.8rem]"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-emerald-100/35 dark:from-slate-950/25 dark:to-emerald-950/25" />
-            <Suspense fallback={<PartsViewerSkeleton />}>
-              <SparePartsViewer progress={scrollProgress} />
-            </Suspense>
-
-            <div
-              aria-hidden={!isPartHovered}
-              className={`pointer-events-none absolute left-4 top-4 z-10 max-w-[min(18rem,calc(100%-2rem))] transition-opacity duration-200 sm:left-7 sm:top-7 ${
-                isPartHovered ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <div className="glass-panel rounded-2xl border p-4 shadow-xl sm:p-5">
-                <p className="text-[9px] font-semibold tracking-[0.15em] text-emerald-700 dark:text-emerald-400 sm:text-[10px]">
-                  {activePart.category}
-                </p>
-                <h2 className="mt-1 text-xl font-semibold leading-tight tracking-[-0.04em] text-slate-950 dark:text-white sm:text-2xl">
-                  {activePart.name}
-                </h2>
-                <p className="mt-2 text-[10px] leading-5 text-slate-600 dark:text-slate-300 sm:text-xs sm:leading-6">
-                  {activePart.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ProcurementFlow />
     </main>
   );
 }
