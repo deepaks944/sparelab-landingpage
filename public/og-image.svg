@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">SpareLab automotive parts marketplace</title>
+  <desc id="description">Request, compare, and coordinate automotive parts with SpareLab.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ecfdf5"/>
+      <stop offset="1" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <circle cx="1020" cy="85" r="220" fill="#10b981" opacity=".08"/>
+  <circle cx="80" cy="600" r="230" fill="#0284c7" opacity=".07"/>
+  <rect x="76" y="76" width="74" height="74" rx="37" fill="url(#accent)"/>
+  <path d="M101 101h27v10h-17v6h17v23h-30v-10h20v-6h-17z" fill="#fff"/>
+  <circle cx="136" cy="99" r="5" fill="#fff"/>
+  <text x="174" y="127" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800" letter-spacing="-2">SPARELAB</text>
+  <text x="78" y="288" fill="#064e3b" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700" letter-spacing="-2">Automotive parts,</text>
+  <text x="78" y="365" fill="#064e3b" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700" letter-spacing="-2">sourced simply.</text>
+  <text x="82" y="430" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="27">Request a part. Compare a quote. Coordinate delivery.</text>
+  <rect x="78" y="488" width="262" height="60" rx="30" fill="#059669"/>
+  <text x="110" y="527" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">sparelab marketplace</text>
+</svg>

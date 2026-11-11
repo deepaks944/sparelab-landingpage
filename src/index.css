@@ -651,6 +651,10 @@ html.dark::-webkit-scrollbar-thumb {
   animation: brand-marquee-scroll 28s linear infinite;
 }
 
+.brand-marquee-right {
+  animation-name: brand-marquee-scroll-right;
+}
+
 .brand-marquee:hover {
   animation-play-state: paused;
 }
@@ -658,6 +662,16 @@ html.dark::-webkit-scrollbar-thumb {
 @keyframes brand-marquee-scroll {
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes brand-marquee-scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
   }
 }
 

@@ -1,3 +1,5 @@
+import trackEvent from "../utils/analytics.js";
+
 const stages = [
   {
     title: "Garage enquiry",
@@ -135,6 +137,9 @@ function ProcurementFlow() {
           <a
             className="inline-flex items-center gap-2 text-emerald-700 transition hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
             href="#request"
+            onClick={() =>
+              trackEvent("part_request_cta_click", { location: "procurement_flow" })
+            }
           >
             Start an enquiry
             <svg

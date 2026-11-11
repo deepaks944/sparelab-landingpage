@@ -1,4 +1,5 @@
 import ScrollReveal from "./ScrollReveal.jsx";
+import trackEvent from "../utils/analytics.js";
 
 function FinalCtaSection() {
   return (
@@ -26,6 +27,7 @@ function FinalCtaSection() {
             <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
               <a
                 href="#request"
+                onClick={() => trackEvent("part_request_cta_click", { location: "final_cta" })}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Request a part{" "}
@@ -34,7 +36,8 @@ function FinalCtaSection() {
                 </span>
               </a>
               <a
-                href="#vendor-network"
+                href="#vendor-signup"
+                onClick={() => trackEvent("vendor_signup_cta_click", { location: "final_cta" })}
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/35 px-6 text-xs font-semibold text-white transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Explore vendor operations

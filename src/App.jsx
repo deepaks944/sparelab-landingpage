@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { Navigate, Route, Routes } from "react-router-dom";
 
@@ -14,6 +14,9 @@ const CategoriesSection = lazy(
   () => import("./components/CategoriesSection.jsx"),
 );
 const AudienceSection = lazy(() => import("./components/AudienceSection.jsx"));
+const MarketplaceDetailsSection = lazy(
+  () => import("./components/MarketplaceDetailsSection.jsx"),
+);
 const SourcingFormSection = lazy(
   () => import("./components/SourcingFormSection.jsx"),
 );
@@ -39,14 +42,26 @@ function PageLoader() {
   );
 }
 
+const THEME_STORAGE_KEY = "theme";
+
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    () => window.localStorage.getItem(THEME_STORAGE_KEY) === "dark",
+  );
   const [themeCarId, setThemeCarId] = useState(null);
   const themeCarSequence = useRef(0);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
     const nextIsDarkMode = !isDarkMode;
     const nextCarId = ++themeCarSequence.current;
+    window.localStorage.setItem(
+      THEME_STORAGE_KEY,
+      nextIsDarkMode ? "dark" : "light",
+    );
     const applyTheme = () => {
       document.documentElement.classList.toggle("dark", nextIsDarkMode);
       flushSync(() => {
@@ -125,6 +140,7 @@ function App() {
                 <BenefitsSection />
                 <CategoriesSection />
                 <AudienceSection />
+                <MarketplaceDetailsSection />
                 <SourcingFormSection />
                 <FinalCtaSection />
                 <FooterSection />

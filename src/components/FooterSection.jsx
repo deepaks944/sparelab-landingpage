@@ -1,29 +1,31 @@
+import trackEvent from "../utils/analytics.js";
+
 const footerGroups = [
   {
     title: "Platform",
     links: [
       ["Request a part", "#request"],
-      ["Part marketplace", "#marketplace"],
-      ["Buyer workflows", "#buyers"],
-      ["Vendor operations", "#vendor-network"],
+      ["How it works", "#buyer-flow"],
+      ["Buyer community", "#buyers"],
+      ["Vendor signup", "#vendor-signup"],
     ],
   },
   {
-    title: "Operations",
+    title: "Trust",
     links: [
-      ["Tiered procurement & quotes", "#quality"],
-      ["Merchant of Record model", "#privacy"],
-      ["Fulfilment & settlement", "#business"],
-      ["Sales, accounts & delivery", "#business"],
+      ["Vendor checks & part labels", "#trust"],
+      ["Payment & settlement", "#trust"],
+      ["Returns & warranty", "#refund-policy"],
+      ["Frequently asked questions", "#faq"],
     ],
   },
   {
-    title: "Product",
+    title: "Support & legal",
     links: [
-      ["Catalogue & fitment", "#features"],
-      ["Returns & disputes", "#business"],
-      ["Channel-based coordination", "#privacy"],
-      ["Tenant-ready platform", "#vendor-network"],
+      ["Contact & support", "#support"],
+      ["Privacy policy", "#privacy-policy"],
+      ["Terms of service", "#terms"],
+      ["Refund policy", "#refund-policy"],
     ],
   },
 ];
@@ -31,7 +33,7 @@ const footerGroups = [
 function FooterSection() {
   return (
     <footer className="glass-inset border-t">
-      <div className="mx-auto grid w-[calc(100%-2rem)] max-w-[1120px] gap-10 py-10 sm:w-[calc(100%-3rem)] sm:grid-cols-2 sm:py-14 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid w-[calc(100%-2rem)] max-w-[1120px] gap-10 py-10 sm:w-[calc(100%-3rem)] sm:grid-cols-2 sm:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <a
             href="#home"
@@ -46,14 +48,16 @@ function FooterSection() {
             </span>
           </a>
           <p className="mt-4 max-w-xs text-xs leading-5 text-slate-500 dark:text-slate-400">
-            SpareLab buys and resells automotive parts on its own GSTIN, issuing
-            customer tax invoices and receiving vendor tax invoices.
+            A coordinated automotive parts marketplace. Confirm part
+            condition, delivery estimate, invoice, and return terms on your
+            written quote before ordering.
           </p>
           <a
             href="#request"
+            onClick={() => trackEvent("part_request_cta_click", { location: "footer" })}
             className="mt-4 inline-flex text-xs font-medium text-emerald-700 hover:text-emerald-800 dark:text-emerald-400"
           >
-            Preview a part request{" "}
+            Prepare a part request{" "}
             <span aria-hidden="true" className="ml-1">
               →
             </span>
@@ -81,10 +85,8 @@ function FooterSection() {
       </div>
       <div className="border-t border-white/60 bg-white/15 backdrop-blur-md dark:border-white/10 dark:bg-slate-950/15">
         <div className="mx-auto flex w-[calc(100%-2rem)] max-w-[1120px] flex-col gap-3 py-4 text-[10px] text-slate-400 dark:text-slate-500 sm:w-[calc(100%-3rem)] sm:flex-row sm:items-center sm:justify-between">
-          <span className="font-bold">
-            © 2026 SpareLab. All rights reserved.
-          </span>
-          <span className="font-bold text-md text-slate-500 dark:text-slate-400">
+          <span className="font-bold">© 2026 SpareLab. All rights reserved.</span>
+          <span className="font-bold text-slate-500 dark:text-slate-400">
             Build Version #{`0.0.0. ${__BUILD_NUMBER__}`} · Last Updated on:{" "}
             <time dateTime={__BUILD_DATE__}>
               {new Intl.DateTimeFormat("en-US", {
@@ -94,20 +96,12 @@ function FooterSection() {
               {` IST`}
             </time>
           </span>
-          <div className="flex gap-5 font-bold">
-            <a
-              href="#privacy"
-              className="hover:text-emerald-700 dark:hover:text-emerald-400"
-            >
-              Privacy
-            </a>
-            <a
-              href="#features"
-              className="hover:text-emerald-700 dark:hover:text-emerald-400 font-bold"
-            >
-              How it works
-            </a>
-          </div>
+          <a
+            href="#privacy-policy"
+            className="font-bold hover:text-emerald-700 dark:hover:text-emerald-400"
+          >
+            Privacy & policies
+          </a>
         </div>
       </div>
     </footer>
