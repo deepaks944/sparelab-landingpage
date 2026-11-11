@@ -1,0 +1,1 @@
+function e(e,t={}){let n={event:e,...t,timestamp:new Date().toISOString()};Array.isArray(window.dataLayer)&&window.dataLayer.push(n),window.dispatchEvent(new CustomEvent(`sparelab:analytics`,{detail:n}))}export{e as t};
