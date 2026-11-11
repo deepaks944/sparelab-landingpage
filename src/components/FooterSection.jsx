@@ -87,7 +87,8 @@ function FooterSection() {
         <div className="mx-auto flex w-[calc(100%-2rem)] max-w-[1120px] flex-col gap-3 py-4 text-[10px] text-slate-400 dark:text-slate-500 sm:w-[calc(100%-3rem)] sm:flex-row sm:items-center sm:justify-between">
           <span className="font-bold">© 2026 SpareLab. All rights reserved.</span>
           <span className="font-bold text-slate-500 dark:text-slate-400">
-            Build Version #{`0.0.0. ${__BUILD_NUMBER__}`} · Last Updated on:{" "}
+            Build Version #{`0.0.0. ${__BUILD_NUMBER__}`} ·{" "}
+            {import.meta.env.DEV ? "DEV" : "PROD"} · Last Updated on:{" "}
             <time dateTime={__BUILD_DATE__}>
               {new Intl.DateTimeFormat("en-US", {
                 dateStyle: "medium",

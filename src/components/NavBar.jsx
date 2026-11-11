@@ -164,6 +164,18 @@ function NavBar({ isDarkMode, onToggleTheme }) {
           </div>
         </div>
       )}
+
+      {import.meta.env.DEV && (
+        <div
+          role="status"
+          aria-label="Developer mode"
+          className="pointer-events-none fixed bottom-0 left-0 z-[60] size-36 overflow-hidden"
+        >
+          <span className="absolute -bottom-1 left-[-2.5rem] flex h-9 w-48 rotate-45 items-center justify-center bg-slate-950 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white shadow-[0_3px_8px_rgba(0,0,0,0.45)]">
+            Developer mode
+          </span>
+        </div>
+      )}
     </header>
   );
 }

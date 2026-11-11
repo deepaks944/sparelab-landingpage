@@ -263,38 +263,173 @@ function SceneArt({ type }) {
 
   if (type === "fitment") {
     return (
-      <svg viewBox="0 0 360 260" fill="none" className="h-full w-full" aria-hidden="true">
-        <circle cx="180" cy="130" r="95" fill="currentColor" fillOpacity=".06" />
-        <circle cx="180" cy="130" r="67" stroke="currentColor" strokeOpacity=".22" strokeWidth="2" />
-        <circle cx="180" cy="130" r="49" fill="currentColor" fillOpacity=".08" stroke="currentColor" strokeOpacity=".55" strokeWidth="5" />
-        <circle cx="180" cy="130" r="23" fill="currentColor" fillOpacity=".12" stroke="currentColor" strokeOpacity=".6" strokeWidth="4" />
+      <svg
+        viewBox="0 0 360 260"
+        fill="none"
+        className="h-full w-full"
+        aria-hidden="true"
+      >
+        <circle
+          cx="180"
+          cy="130"
+          r="95"
+          fill="currentColor"
+          fillOpacity=".06"
+        />
+        <circle
+          cx="180"
+          cy="130"
+          r="67"
+          stroke="currentColor"
+          strokeOpacity=".22"
+          strokeWidth="2"
+        />
+        <circle
+          cx="180"
+          cy="130"
+          r="49"
+          fill="currentColor"
+          fillOpacity=".08"
+          stroke="currentColor"
+          strokeOpacity=".55"
+          strokeWidth="5"
+        />
+        <circle
+          cx="180"
+          cy="130"
+          r="23"
+          fill="currentColor"
+          fillOpacity=".12"
+          stroke="currentColor"
+          strokeOpacity=".6"
+          strokeWidth="4"
+        />
         <circle cx="180" cy="130" r="8" fill="currentColor" fillOpacity=".75" />
-        <path d="M180 63v44m0 46v44m67-67h-44m-46 0h-44m114-47-31 31m-32 32-31 31m94 0-31-31m-32-32-31-31" stroke="currentColor" strokeOpacity=".32" strokeWidth="7" strokeLinecap="round" />
-        <circle cx="180" cy="130" r="86" stroke="currentColor" strokeOpacity=".11" strokeDasharray="3 8" strokeWidth="2" />
+        <path
+          d="M180 63v44m0 46v44m67-67h-44m-46 0h-44m114-47-31 31m-32 32-31 31m94 0-31-31m-32-32-31-31"
+          stroke="currentColor"
+          strokeOpacity=".32"
+          strokeWidth="7"
+          strokeLinecap="round"
+        />
+        <circle
+          cx="180"
+          cy="130"
+          r="86"
+          stroke="currentColor"
+          strokeOpacity=".11"
+          strokeDasharray="3 8"
+          strokeWidth="2"
+        />
       </svg>
     );
   }
 
   if (type === "quality") {
     return (
-      <svg viewBox="0 0 360 260" fill="none" className="h-full w-full" aria-hidden="true">
-        <circle cx="180" cy="130" r="95" fill="currentColor" fillOpacity=".06" />
-        <path d="m180 47 72 31v51c0 44-29 72-72 91-43-19-72-47-72-91V78l72-31Z" fill="currentColor" fillOpacity=".1" stroke="currentColor" strokeOpacity=".45" strokeWidth="5" strokeLinejoin="round" />
-        <path d="m143 129 25 25 51-54" stroke="currentColor" strokeOpacity=".75" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="180" cy="130" r="86" stroke="currentColor" strokeOpacity=".13" strokeDasharray="3 8" strokeWidth="2" />
+      <svg
+        viewBox="0 0 360 260"
+        fill="none"
+        className="h-full w-full"
+        aria-hidden="true"
+      >
+        <circle
+          cx="180"
+          cy="130"
+          r="95"
+          fill="currentColor"
+          fillOpacity=".06"
+        />
+        <path
+          d="m180 47 72 31v51c0 44-29 72-72 91-43-19-72-47-72-91V78l72-31Z"
+          fill="currentColor"
+          fillOpacity=".1"
+          stroke="currentColor"
+          strokeOpacity=".45"
+          strokeWidth="5"
+          strokeLinejoin="round"
+        />
+        <path
+          d="m143 129 25 25 51-54"
+          stroke="currentColor"
+          strokeOpacity=".75"
+          strokeWidth="12"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle
+          cx="180"
+          cy="130"
+          r="86"
+          stroke="currentColor"
+          strokeOpacity=".13"
+          strokeDasharray="3 8"
+          strokeWidth="2"
+        />
       </svg>
     );
   }
 
   return (
-    <svg viewBox="0 0 360 260" fill="none" className="h-full w-full" aria-hidden="true">
+    <svg
+      viewBox="0 0 360 260"
+      fill="none"
+      className="h-full w-full"
+      aria-hidden="true"
+    >
       <circle cx="180" cy="130" r="95" fill="currentColor" fillOpacity=".06" />
-      <path d="M68 85h137v91H68z" fill="currentColor" fillOpacity=".14" stroke="currentColor" strokeOpacity=".48" strokeWidth="4" strokeLinejoin="round" />
-      <path d="M205 111h42l42 42v23h-84v-65Z" fill="currentColor" fillOpacity=".2" stroke="currentColor" strokeOpacity=".52" strokeWidth="4" strokeLinejoin="round" />
-      <path d="M226 119v31h48" stroke="currentColor" strokeOpacity=".42" strokeWidth="4" strokeLinejoin="round" />
-      <circle cx="112" cy="180" r="16" fill="currentColor" fillOpacity=".35" stroke="currentColor" strokeOpacity=".65" strokeWidth="4" />
-      <circle cx="250" cy="180" r="16" fill="currentColor" fillOpacity=".35" stroke="currentColor" strokeOpacity=".65" strokeWidth="4" />
-      <path d="M80 99h108m-108 18h75m-75 18h88" stroke="currentColor" strokeOpacity=".3" strokeWidth="4" strokeLinecap="round" />
+      <path
+        d="M68 85h137v91H68z"
+        fill="currentColor"
+        fillOpacity=".14"
+        stroke="currentColor"
+        strokeOpacity=".48"
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M205 111h42l42 42v23h-84v-65Z"
+        fill="currentColor"
+        fillOpacity=".2"
+        stroke="currentColor"
+        strokeOpacity=".52"
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M226 119v31h48"
+        stroke="currentColor"
+        strokeOpacity=".42"
+        strokeWidth="4"
+        strokeLinejoin="round"
+      />
+      <circle
+        cx="112"
+        cy="180"
+        r="16"
+        fill="currentColor"
+        fillOpacity=".35"
+        stroke="currentColor"
+        strokeOpacity=".65"
+        strokeWidth="4"
+      />
+      <circle
+        cx="250"
+        cy="180"
+        r="16"
+        fill="currentColor"
+        fillOpacity=".35"
+        stroke="currentColor"
+        strokeOpacity=".65"
+        strokeWidth="4"
+      />
+      <path
+        d="M80 99h108m-108 18h75m-75 18h88"
+        stroke="currentColor"
+        strokeOpacity=".3"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -310,9 +445,7 @@ function HeroSection() {
     const previewZoom = previewZoomRef.current;
     if (!preview || !previewZoom) return undefined;
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    );
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const updateZoom = () => {
       previewAnimationFrameRef.current = 0;
@@ -321,10 +454,7 @@ function HeroSection() {
       const stickyTop = window.matchMedia("(min-width: 640px)").matches
         ? 80
         : 64;
-      const scrollDistance = Math.max(
-        1,
-        height - (viewportHeight - stickyTop),
-      );
+      const scrollDistance = Math.max(1, height - (viewportHeight - stickyTop));
       const progress = Math.max(
         0,
         Math.min(1, (stickyTop - top) / scrollDistance),
@@ -386,14 +516,16 @@ function HeroSection() {
       <p className="hero-load-in hero-delay-3 mt-6 max-w-2xl text-pretty text-base leading-7 text-slate-500 dark:text-slate-400 sm:text-lg sm:leading-8">
         SpareLab connects buyers to a curated network of OE, OEM, OES, and other
         parts vendors. We buy from vendors and resell to customers under
-        SpareLab&apos;s own GSTIN and invoice identity—coordinating the commercial
-        journey from enquiry through fulfilment and settlement.
+        SpareLab&apos;s own GSTIN and invoice identity—coordinating the
+        commercial journey from enquiry through fulfilment and settlement.
       </p>
 
       <div className="hero-load-in hero-delay-4 mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
         <a
           href="#request"
-          onClick={() => trackEvent("part_request_cta_click", { location: "hero" })}
+          onClick={() =>
+            trackEvent("part_request_cta_click", { location: "hero" })
+          }
           className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-7 text-base font-semibold text-white shadow-[0_6px_18px_rgba(5,150,105,0.2)] transition hover:bg-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
         >
           Request a part
@@ -414,7 +546,9 @@ function HeroSection() {
         </a>
         <a
           href="#vendor-signup"
-          onClick={() => trackEvent("vendor_signup_cta_click", { location: "hero" })}
+          onClick={() =>
+            trackEvent("vendor_signup_cta_click", { location: "hero" })
+          }
           className="glass-control inline-flex min-h-12 items-center justify-center rounded-full border px-7 text-base font-semibold text-slate-700 transition hover:border-emerald-200 hover:bg-emerald-50/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 dark:text-slate-200 dark:hover:border-emerald-700"
         >
           Join as a vendor
@@ -485,7 +619,9 @@ function HeroSection() {
                           : "z-0 -translate-x-full scale-[.96] opacity-0"
                     }`}
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${scene.color}`} />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${scene.color}`}
+                    />
                     <div className="absolute -right-12 -top-20 size-64 rounded-full bg-white/25 blur-3xl dark:bg-emerald-400/10" />
                     <div className="relative grid h-full grid-cols-1 items-center px-5 pb-12 pt-10 sm:grid-cols-[1fr_.9fr] sm:px-10 sm:py-12 lg:px-16">
                       <div className="relative z-10 max-w-md text-left">
