@@ -1,30 +1,34 @@
 import ScrollReveal from "./ScrollReveal.jsx";
 
 const vendorTypes = [
-  { label: "OE", description: "Original equipment" },
-  { label: "OEM", description: "Original equipment manufacturers" },
-  { label: "OES", description: "Original equipment suppliers" },
-  { label: "Others", description: "Additional parts vendors" },
+  // { label: "OE", description: "Original equipment" },
+  // // { label: "OEM", description: "Original equipment manufacturers" },
+  // // { label: "OES", description: "Original equipment suppliers" },
+  // { label: "Others", description: "Additional parts vendors" },
 ];
 
 const partnerBrands = [
-  "Bosch",
-  "Denso",
-  "Valeo",
-  "ZF",
-  "MAHLE",
-  "SKF",
-  "Gabriel",
-  "Lumax",
+  { name: "Bosch", logo: "bosch" },
+  { name: "Denso", logo: "denso" },
+  { name: "Valeo", logo: "valeo" },
+  { name: "ZF", logo: "zf" },
+  { name: "MAHLE", logo: "mahle" },
+  { name: "SKF", logo: "skf" },
+  { name: "Gabriel", logo: "gabriel", format: "png" },
+  { name: "Lumax", logo: "lumax" },
 ];
 
 function PartnerBrandNames({ duplicate = false }) {
   return partnerBrands.map((brand) => (
     <span
-      key={`${duplicate ? "duplicate-" : ""}${brand}`}
-      className="shrink-0 px-6 text-sm font-extrabold tracking-[0.04em] text-slate-500 dark:text-slate-300 sm:px-10 sm:text-base"
+      key={`${duplicate ? "duplicate-" : ""}${brand.name}`}
+      className="flex h-12 w-36 shrink-0 items-center justify-center px-6 sm:w-40 sm:px-8"
     >
-      {brand}
+      <img
+        src={`${import.meta.env.BASE_URL}parts-logos/${brand.logo}.${brand.format ?? "svg"}`}
+        alt=""
+        className="h-8 w-auto max-w-28 object-contain sm:max-w-32"
+      />
     </span>
   ));
 }
@@ -56,10 +60,7 @@ function SupplierBrandsSection() {
               <div className="flex min-w-max items-center" aria-hidden="true">
                 <PartnerBrandNames />
               </div>
-              <div
-                className="flex min-w-max items-center"
-                aria-hidden="true"
-              >
+              <div className="flex min-w-max items-center" aria-hidden="true">
                 <PartnerBrandNames duplicate />
               </div>
             </div>
@@ -71,9 +72,9 @@ function SupplierBrandsSection() {
             A curated, tiered vendor network
           </p>
           <p className="mx-auto mt-2 max-w-2xl text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">
-            SpareLab coordinates procurement across OE, OEM, OES, and other
-            vendors. Vendor operations can support seller, distributor, and
-            retailer workflows in one hybrid panel.
+            SpareLab coordinates procurement across OE and other vendors. Vendor
+            operations can support seller, distributor, and retailer workflows
+            in one hybrid panel.
           </p>
           <p className="mx-auto mt-2 max-w-2xl text-[10px] leading-5 text-slate-500 dark:text-slate-400">
             Brand names shown are examples only and do not imply sponsorship,
@@ -94,15 +95,15 @@ function SupplierBrandsSection() {
               </div>
             ))}
           </div>
-          <p className="mx-auto mt-5 max-w-3xl text-[10px] leading-5 text-slate-500 dark:text-slate-400 sm:text-xs">
+          {/* <p className="mx-auto mt-5 max-w-3xl text-[10px] leading-5 text-slate-500 dark:text-slate-400 sm:text-xs">
             The wider platform scope includes a buyer marketplace, hybrid
             seller/distributor/retailer panels, admin ERP, Sales CRM,
             procurement, accounts, invoicing, payments, payouts, delivery,
             returns, and disputes. Cross-cutting tools include role-based
             access, audit, chat, notifications, reports, documents, HR, finance,
-            subscriptions, and search credits. Single-tenant active; designed
-            to support multiple tenants.
-          </p>
+            subscriptions, and search credits. Single-tenant active; designed to
+            support multiple tenants.
+          </p> */}
         </div>
       </ScrollReveal>
     </section>

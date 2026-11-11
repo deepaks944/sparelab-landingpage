@@ -514,8 +514,8 @@ function HeroSection() {
       </h1>
 
       <p className="hero-load-in hero-delay-3 mt-6 max-w-2xl text-pretty text-base leading-7 text-slate-500 dark:text-slate-400 sm:text-lg sm:leading-8">
-        SpareLab connects buyers to a curated network of OE, OEM, OES, and other
-        parts vendors. We buy from vendors and resell to customers under
+        SpareLab connects buyers to a curated network of OE,OES and other parts
+        vendors. We buy from vendors and resell to customers under
         SpareLab&apos;s own GSTIN and invoice identity—coordinating the
         commercial journey from enquiry through fulfilment and settlement.
       </p>
