@@ -39,18 +39,18 @@ function SupplierBrandsSection() {
       <ScrollReveal>
         <div className="glass-panel rounded-2xl border px-5 py-7 text-center sm:px-8 sm:py-9">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
-            Authorised partner brands
+            Automotive parts brands
           </p>
           <h2
             id="partner-brands-title"
             className="mt-2 text-xl font-semibold tracking-[-0.04em] text-slate-950 dark:text-white sm:text-2xl"
           >
-            Trusted names across automotive
+            Parts categories across the market
           </h2>
           <div
             className="glass-inset brand-marquee-container mt-6 overflow-hidden rounded-xl border py-5"
             role="group"
-            aria-label={`Authorised partner brands: ${partnerBrands.join(", ")}`}
+            aria-label={`Example automotive parts brands: ${partnerBrands.join(", ")}`}
           >
             <div className="brand-marquee flex w-max motion-reduce:animate-none">
               <div className="flex min-w-max items-center" aria-hidden="true">
@@ -74,6 +74,10 @@ function SupplierBrandsSection() {
             SpareLab coordinates procurement across OE, OEM, OES, and other
             vendors. Vendor operations can support seller, distributor, and
             retailer workflows in one hybrid panel.
+          </p>
+          <p className="mx-auto mt-2 max-w-2xl text-[10px] leading-5 text-slate-500 dark:text-slate-400">
+            Brand names shown are examples only and do not imply sponsorship,
+            affiliation, or authorised-dealer status.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {vendorTypes.map((vendor) => (

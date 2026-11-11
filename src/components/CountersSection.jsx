@@ -9,7 +9,7 @@ function CountersSection() {
       className="mx-auto w-[calc(100%-2rem)] max-w-[1120px] pb-10 sm:w-[calc(100%-3rem)] sm:pb-24"
     >
       <ScrollReveal>
-        <div className="glass-panel grid grid-cols-2 gap-y-7 rounded-2xl border px-3 py-6 sm:grid-cols-4 sm:gap-y-0 sm:px-5 sm:py-8">
+        <div className="glass-panel grid grid-cols-2 gap-y-7 rounded-2xl border px-3 py-6 sm:grid-cols-3 sm:gap-y-0 sm:px-5 sm:py-8">
           {marketplaceStats.map((stat) => (
             <div key={stat.label} className="py-2 text-center">
               <p

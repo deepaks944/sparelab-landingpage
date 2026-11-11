@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import marketplaceStats from "../data/marketplaceStats.js";
 import CountUp from "./CountUp.jsx";
 import ProcurementFlow from "./ProcurementFlow.jsx";
+import trackEvent from "../utils/analytics.js";
 
 const previewScenes = [
   {
     label: "Marketplace at a glance",
     title: "Parts sourcing, backed by a growing network.",
     detail:
-      "Explore SpareLab's vendor reach, city coverage, catalogue, and on-time fulfilment.",
+      "Explore SpareLab's vendor network, city coverage, and parts catalogue.",
     status: "120+ vendors · 15,000+ catalogue parts",
     color:
       "from-emerald-100/80 via-white/80 to-teal-100/80 dark:from-emerald-950/70 dark:via-slate-900/80 dark:to-teal-950/70",
@@ -65,12 +66,27 @@ const catalogueParts = [
   { name: "Alternator", type: "alternator" },
 ];
 
+const vehicleBrands = [
+  { name: "Maruti Suzuki", logo: "suzuki" },
+  { name: "TATA MOTORS", logo: "tata" },
+  { name: "Mahindra", logo: "mahindra" },
+  { name: "Toyota", logo: "toyota" },
+  { name: "Hyundai", logo: "hyundai" },
+  { name: "Volkswagen", logo: "volkswagen" },
+  { name: "Honda", logo: "honda" },
+  { name: "Kia", logo: "kia" },
+  { name: "ŠKODA", logo: "skoda" },
+  { name: "RENAULT", logo: "renault" },
+  { name: "MG", logo: "mg" },
+  { name: "BMW", logo: "bmw" },
+];
+
 function SceneArt({ type }) {
   if (type === "stats") {
     return (
       <div
         aria-hidden="true"
-        className="grid h-full w-full grid-cols-2 gap-2 rounded-2xl border border-white/60 bg-white/70 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-slate-950/65 sm:gap-3 sm:p-4"
+        className="grid h-full w-full grid-cols-3 gap-2 rounded-2xl border border-white/60 bg-white/70 p-3 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-slate-950/65 sm:gap-3 sm:p-4"
       >
         {marketplaceStats.map((stat, index) => (
           <div
@@ -87,7 +103,7 @@ function SceneArt({ type }) {
             </span>
             <span
               className={`mt-1 h-1 rounded-full bg-emerald-500/70 ${
-                index === 3 ? "w-full" : index === 2 ? "w-4/5" : "w-3/5"
+                index === 2 ? "w-full" : "w-3/5"
               }`}
             />
           </div>
@@ -377,6 +393,7 @@ function HeroSection() {
       <div className="hero-load-in hero-delay-4 mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
         <a
           href="#request"
+          onClick={() => trackEvent("part_request_cta_click", { location: "hero" })}
           className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-7 text-base font-semibold text-white shadow-[0_6px_18px_rgba(5,150,105,0.2)] transition hover:bg-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"
         >
           Request a part
@@ -396,16 +413,52 @@ function HeroSection() {
           </svg>
         </a>
         <a
-          href="#vendor-network"
+          href="#vendor-signup"
+          onClick={() => trackEvent("vendor_signup_cta_click", { location: "hero" })}
           className="glass-control inline-flex min-h-12 items-center justify-center rounded-full border px-7 text-base font-semibold text-slate-700 transition hover:border-emerald-200 hover:bg-emerald-50/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 dark:text-slate-200 dark:hover:border-emerald-700"
         >
           Join as a vendor
         </a>
       </div>
 
+      <div className="hero-load-in hero-delay-4 mt-8 w-full max-w-[960px]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+          Parts for leading vehicle brands
+        </p>
+        <div
+          className="mt-3 overflow-hidden py-3"
+          role="group"
+          aria-label={`Vehicle brands: ${vehicleBrands.map((brand) => brand.name).join(", ")}`}
+        >
+          <div className="brand-marquee brand-marquee-right flex w-max">
+            {[false, true].map((duplicate) => (
+              <div
+                key={String(duplicate)}
+                className="flex min-w-max items-center gap-3 px-3 sm:gap-4"
+                aria-hidden={duplicate}
+              >
+                {vehicleBrands.map((brand) => (
+                  <span
+                    key={brand.name}
+                    className="inline-flex min-w-32 shrink-0 items-center justify-center gap-2 px-4 py-2 text-xs font-bold tracking-wide text-slate-700 dark:text-slate-200 sm:min-w-36 sm:px-5 sm:text-sm"
+                  >
+                    <img
+                      src={`${import.meta.env.BASE_URL}vehicle-logos/${brand.logo}.svg`}
+                      alt=""
+                      className="size-6 shrink-0 object-contain"
+                    />
+                    {brand.name}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div
         ref={previewRef}
-        className="relative mt-8 h-[150vh] w-full max-w-[1120px] sm:mt-16"
+        className="relative mt-4 h-[150vh] w-full max-w-[1120px] sm:mt-8"
       >
         <div className="sticky top-16 flex h-[calc(100svh-4rem)] min-h-[420px] items-center sm:top-20 sm:h-[calc(100svh-5rem)] sm:min-h-[480px]">
           <div

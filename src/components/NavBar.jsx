@@ -1,12 +1,14 @@
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle.jsx";
 import AccountMenu from "./AccountMenu.jsx";
+import trackEvent from "../utils/analytics.js";
 
 const links = [
-  { label: "How it works", href: "#features" },
+  { label: "How it works", href: "#buyer-flow" },
   { label: "For buyers", href: "#buyers" },
-  { label: "For vendors", href: "#vendor-network" },
-  { label: "Marketplace", href: "#marketplace" },
+  { label: "For vendors", href: "#vendor-signup" },
+  { label: "Trust", href: "#trust" },
+  { label: "FAQs", href: "#faq" },
 ];
 
 function Brand() {
@@ -53,6 +55,9 @@ function NavBar({ isDarkMode, onToggleTheme }) {
             <a
               key={link.label}
               href={link.href}
+              onClick={() =>
+                trackEvent("navigation_link_click", { label: link.label })
+              }
               className="relative whitespace-nowrap py-1 text-[14px] font-medium text-slate-600 transition-colors hover:text-emerald-700 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-emerald-600 after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none dark:text-slate-300 dark:hover:text-emerald-400 dark:after:bg-emerald-400"
             >
               {link.label}
@@ -63,6 +68,9 @@ function NavBar({ isDarkMode, onToggleTheme }) {
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           <a
             href="#request"
+            onClick={() =>
+              trackEvent("part_request_cta_click", { location: "navigation" })
+            }
             className="relative py-1 text-[14px] font-medium text-slate-700 transition-colors hover:text-emerald-700 after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-emerald-600 after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none dark:text-slate-200 dark:hover:text-emerald-400 dark:after:bg-emerald-400"
           >
             Request a part
@@ -132,7 +140,10 @@ function NavBar({ isDarkMode, onToggleTheme }) {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  setMenuOpen(false);
+                  trackEvent("navigation_link_click", { label: link.label });
+                }}
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
               >
                 {link.label}
@@ -140,7 +151,12 @@ function NavBar({ isDarkMode, onToggleTheme }) {
             ))}
             <a
               href="#request"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+                trackEvent("part_request_cta_click", {
+                  location: "mobile_navigation",
+                });
+              }}
               className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-emerald-400"
             >
               Request a part
