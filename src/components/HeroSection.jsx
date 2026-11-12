@@ -602,7 +602,7 @@ function HeroSection() {
             aria-label="SpareLab procurement and order lifecycle"
             className="glass-panel hero-scroll-zoom w-full rounded-[1.5rem] border p-2.5 sm:rounded-[1.8rem] sm:p-3.5"
           >
-            <div className="relative aspect-[1.25/1] overflow-hidden rounded-[1rem] bg-white/35 sm:aspect-[2.55/1] sm:rounded-[1.25rem]">
+            <div className="relative min-h-[480px] overflow-hidden rounded-[1rem] bg-white/35 sm:aspect-[2.55/1] sm:min-h-0 sm:rounded-[1.25rem]">
               {previewScenes.map((scene, index) => {
                 const isActive = activeScene === index;
                 const isPrevious = index < activeScene;
@@ -623,7 +623,7 @@ function HeroSection() {
                       className={`absolute inset-0 bg-gradient-to-br ${scene.color}`}
                     />
                     <div className="absolute -right-12 -top-20 size-64 rounded-full bg-white/25 blur-3xl dark:bg-emerald-400/10" />
-                    <div className="relative grid h-full grid-cols-1 items-center px-5 pb-12 pt-10 sm:grid-cols-[1fr_.9fr] sm:px-10 sm:py-12 lg:px-16">
+                    <div className="relative grid h-full grid-rows-[1fr_auto] items-center gap-3 px-5 pb-16 pt-6 sm:grid-rows-1 sm:grid-cols-[1fr_.9fr] sm:gap-0 sm:px-10 sm:py-12 lg:px-16">
                       <div className="relative z-10 max-w-md text-left">
                         <span className="glass-chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-emerald-800 dark:text-emerald-300 sm:text-[10px]">
                           <span className="size-1.5 rounded-full bg-emerald-500" />
@@ -640,7 +640,7 @@ function HeroSection() {
                           {scene.status}
                         </span>
                       </div>
-                      <div className="pointer-events-none absolute bottom-7 right-2 top-7 w-[53%] text-emerald-700/80 opacity-40 dark:text-emerald-300/80 sm:relative sm:inset-auto sm:ml-auto sm:h-56 sm:w-full sm:max-w-sm sm:opacity-100">
+                      <div className="pointer-events-none relative h-28 w-full max-w-xs justify-self-end text-emerald-700/80 dark:text-emerald-300/80 sm:ml-auto sm:h-56 sm:max-w-sm">
                         <SceneArt type={scene.art} />
                       </div>
                     </div>
