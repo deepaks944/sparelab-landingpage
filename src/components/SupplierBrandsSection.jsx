@@ -72,9 +72,9 @@ function SupplierBrandsSection() {
             A curated, tiered vendor network
           </p>
           <p className="mx-auto mt-2 max-w-2xl text-xs leading-5 text-slate-500 dark:text-slate-400 sm:text-sm">
-            SpareLab coordinates procurement across OE and other vendors. Vendor
-            operations can support seller, distributor, and retailer workflows
-            in one hybrid panel.
+            SpareLab coordinates procurement across OE, OES and other vendors.
+            Vendor operations can support seller, distributor, and retailer
+            workflows in one hybrid panel.
           </p>
           <p className="mx-auto mt-2 max-w-2xl text-[10px] leading-5 text-slate-500 dark:text-slate-400">
             Brand names shown are examples only and do not imply sponsorship,

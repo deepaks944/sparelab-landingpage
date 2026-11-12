@@ -12,14 +12,18 @@ function BackToTopButton() {
         document.documentElement.scrollHeight - window.innerHeight;
       const scrollProgress =
         scrollableHeight > 0
-          ? Math.min(100, Math.max(0, (window.scrollY / scrollableHeight) * 100))
+          ? Math.min(
+              100,
+              Math.max(0, (window.scrollY / scrollableHeight) * 100),
+            )
           : 0;
 
       setProgress(scrollProgress);
       setVisible(window.scrollY > 400);
     };
     const scheduleUpdate = () => {
-      if (!frameId) frameId = window.requestAnimationFrame(updateScrollProgress);
+      if (!frameId)
+        frameId = window.requestAnimationFrame(updateScrollProgress);
     };
 
     updateScrollProgress();

@@ -14,7 +14,11 @@ const benefits = [
       "Keep a clear enquiry and order history",
     ],
     panelTitle: "Customer enquiry",
-    panelRows: ["ENQ-000020  ·  Request received", "Volkswagen Polo 2013  ·  Fitment details", "Front wheel bearing ×2  ·  CV joint boot kit ×1"],
+    panelRows: [
+      "ENQ-000020  ·  Request received",
+      "Volkswagen Polo 2013  ·  Fitment details",
+      "Front wheel bearing ×2  ·  CV joint boot kit ×1",
+    ],
   },
   {
     id: "privacy",
@@ -29,13 +33,17 @@ const benefits = [
       "Coordinate sales, procurement, accounts, and delivery in role-based channels",
     ],
     panelTitle: "Private, channel-based coordination",
-    panelRows: ["Vendor tax invoice → SpareLab", "SpareLab tax invoice → Customer", "Mediated chat  ·  Identities anonymised"],
+    panelRows: [
+      "Vendor tax invoice → SpareLab",
+      "SpareLab tax invoice → Customer",
+      "Mediated chat  ·  Identities anonymised",
+    ],
   },
   {
     id: "quality",
     number: "03",
     eyebrow: "Tiered procurement & quoting",
-    title: "Cascade requirements across OE, OEM, OES, and other vendors.",
+    title: "Cascade requirements across OE, OES and other vendors.",
     description:
       "SpareLab controls time-boxed procurement routing across vendor tiers (T1 → T2 → T3), with manual bypass. Admin configures each vendor's margin; customer pricing displays MRP and the computed discount.",
     bullets: [
@@ -45,7 +53,11 @@ const benefits = [
       "Collect via gateway, direct transfer, or credit; verify payment before placing the order",
     ],
     panelTitle: "Procurement & quote",
-    panelRows: ["T1 → T2 → T3  ·  SpareLab-controlled routing", "Vendor cost + configured margin → customer price", "MRP · Computed discount · Quote valid for 7 days"],
+    panelRows: [
+      "T1 → T2 → T3  ·  SpareLab-controlled routing",
+      "Vendor cost + configured margin → customer price",
+      "MRP · Computed discount · Quote valid for 7 days",
+    ],
   },
   {
     id: "business",
@@ -61,7 +73,11 @@ const benefits = [
       "Handle vendor ratings, customer reviews, returns, issues, disputes, and refund-to-ledger credits",
     ],
     panelTitle: "Accounts & delivery checklist",
-    panelRows: ["Vendor tax invoice  ·  Order cross-check", "SpareLab GSTIN  ·  Customer tax invoice", "Controlled delivery  ·  Vendor settlement"],
+    panelRows: [
+      "Vendor tax invoice  ·  Order cross-check",
+      "SpareLab GSTIN  ·  Customer tax invoice",
+      "Controlled delivery  ·  Vendor settlement",
+    ],
   },
 ];
 
@@ -74,19 +90,27 @@ function MockPanel({ title, rows }) {
           <i className="size-1.5 rounded-full bg-amber-400" />
           <i className="size-1.5 rounded-full bg-emerald-400" />
         </span>
-        <span className="text-[9px] font-medium text-slate-400">SPARELAB PORTAL</span>
+        <span className="text-[9px] font-medium text-slate-400">
+          SPARELAB PORTAL
+        </span>
       </div>
-      <p className="mb-3 text-xs font-semibold text-slate-800 dark:text-slate-100">{title}</p>
+      <p className="mb-3 text-xs font-semibold text-slate-800 dark:text-slate-100">
+        {title}
+      </p>
       <div className="space-y-2.5">
         {rows.map((row, index) => (
           <div
             key={row}
             className="glass-chip flex items-center gap-2.5 rounded-xl px-3 py-2.5"
           >
-            <span className={`flex size-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold ${index === 0 ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300" : "bg-slate-200 text-slate-500 dark:bg-slate-800 dark:text-slate-400"}`}>
+            <span
+              className={`flex size-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold ${index === 0 ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300" : "bg-slate-200 text-slate-500 dark:bg-slate-800 dark:text-slate-400"}`}
+            >
               {index === 0 ? "✓" : index + 1}
             </span>
-            <span className="text-[10px] font-medium text-slate-600 dark:text-slate-300">{row}</span>
+            <span className="text-[10px] font-medium text-slate-600 dark:text-slate-300">
+              {row}
+            </span>
           </div>
         ))}
       </div>
@@ -108,7 +132,9 @@ function BenefitsSection() {
                 <span className="size-1.5 rounded-full bg-emerald-500" />
                 {benefit.eyebrow}
               </span>
-              <p className="mb-2 text-[10px] font-semibold tracking-[0.16em] text-slate-300 dark:text-slate-600">{benefit.number} / 04</p>
+              <p className="mb-2 text-[10px] font-semibold tracking-[0.16em] text-slate-300 dark:text-slate-600">
+                {benefit.number} / 04
+              </p>
               <h2 className="max-w-lg text-2xl font-semibold leading-[1.08] tracking-[-0.045em] text-slate-950 dark:text-white sm:text-3xl">
                 {benefit.title}
               </h2>
@@ -117,13 +143,21 @@ function BenefitsSection() {
               </p>
               <ul className="mt-5 space-y-2.5">
                 {benefit.bullets.map((bullet) => (
-                  <li key={bullet} className="flex items-start gap-2.5 text-xs leading-5 text-slate-600 dark:text-slate-300">
-                    <span className="glass-chip mt-1 flex size-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold text-emerald-700 dark:text-emerald-300">✓</span>
+                  <li
+                    key={bullet}
+                    className="flex items-start gap-2.5 text-xs leading-5 text-slate-600 dark:text-slate-300"
+                  >
+                    <span className="glass-chip mt-1 flex size-4 shrink-0 items-center justify-center rounded-full text-[9px] font-bold text-emerald-700 dark:text-emerald-300">
+                      ✓
+                    </span>
                     {bullet}
                   </li>
                 ))}
               </ul>
-              <a href="#request" className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300">
+              <a
+                href="#request"
+                className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
+              >
                 Learn more <span aria-hidden="true">→</span>
               </a>
             </div>
