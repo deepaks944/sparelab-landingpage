@@ -446,20 +446,20 @@ function HeroSection() {
     if (!preview || !previewZoom) return undefined;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktopViewport = window.matchMedia("(min-width: 640px)");
 
     const updateZoom = () => {
       previewAnimationFrameRef.current = 0;
       const { top, height } = preview.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
-      const stickyTop = window.matchMedia("(min-width: 640px)").matches
-        ? 80
-        : 64;
+      const isDesktop = desktopViewport.matches;
+      const stickyTop = isDesktop ? 80 : 64;
       const scrollDistance = Math.max(1, height - (viewportHeight - stickyTop));
       const progress = Math.max(
         0,
         Math.min(1, (stickyTop - top) / scrollDistance),
       );
-      const scale = reduceMotion.matches
+      const scale = reduceMotion.matches || !isDesktop
         ? 1
         : 0.96 + Math.sin(progress * Math.PI) * 0.24;
       const sceneIndex = Math.min(
@@ -468,9 +468,11 @@ function HeroSection() {
       );
 
       previewZoom.style.setProperty("--preview-scale", scale.toFixed(3));
-      setActiveScene((current) =>
-        current === sceneIndex ? current : sceneIndex,
-      );
+      if (isDesktop) {
+        setActiveScene((current) =>
+          current === sceneIndex ? current : sceneIndex,
+        );
+      }
     };
     const requestZoomUpdate = () => {
       if (!previewAnimationFrameRef.current) {
@@ -648,14 +650,83 @@ function HeroSection() {
                 );
               })}
 
-              <div className="glass-panel absolute bottom-3 left-3 z-30 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 shadow-sm sm:bottom-5 sm:left-5">
+              <div className="glass-panel absolute bottom-3 left-3 z-30 hidden items-center gap-2 rounded-full border px-3 py-1.5 shadow-sm sm:bottom-5 sm:left-5 sm:inline-flex">
                 <span className="size-1.5 rounded-full bg-emerald-500" />
                 <span className="text-[9px] font-medium text-slate-700 dark:text-slate-200 sm:text-[10px]">
                   Scroll to explore
                 </span>
               </div>
 
-              <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-1.5">
+              <div className="absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 sm:hidden">
+                <button
+                  type="button"
+                  aria-label="Previous slide"
+                  onClick={() =>
+                    setActiveScene(
+                      (current) =>
+                        (current + previewScenes.length - 1) %
+                        previewScenes.length,
+                    )
+                  }
+                  className="glass-panel flex size-10 shrink-0 items-center justify-center rounded-full border text-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:text-emerald-300"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    className="size-4"
+                  >
+                    <path
+                      d="m12 5-5 5 5 5M7 10h9"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+                {previewScenes.map((scene, index) => (
+                  <button
+                    key={scene.label}
+                    type="button"
+                    aria-label={`Go to slide ${index + 1}: ${scene.label}`}
+                    aria-current={activeScene === index ? "true" : undefined}
+                    onClick={() => setActiveScene(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      activeScene === index
+                        ? "w-6 bg-emerald-600"
+                        : "w-2 bg-slate-400/60"
+                    }`}
+                  />
+                ))}
+                <button
+                  type="button"
+                  aria-label="Next slide"
+                  onClick={() =>
+                    setActiveScene(
+                      (current) => (current + 1) % previewScenes.length,
+                    )
+                  }
+                  className="glass-panel flex size-10 shrink-0 items-center justify-center rounded-full border text-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:text-emerald-300"
+                >
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    className="size-4"
+                  >
+                    <path
+                      d="m8 5 5 5-5 5m5-5H4"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="absolute bottom-4 left-1/2 z-30 hidden -translate-x-1/2 items-center gap-1.5 sm:flex">
                 {previewScenes.map((scene, index) => (
                   <span
                     key={scene.label}
