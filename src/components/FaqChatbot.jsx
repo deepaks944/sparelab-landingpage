@@ -40,6 +40,8 @@ function FaqChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([initialMessage]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(false);
   const launcherRef = useRef(null);
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
@@ -58,13 +60,15 @@ function FaqChatbot() {
 
     const answer =
       findFaqAnswer(submittedQuestion) ||
-      "I couldn't find a close match. Try one of these common questions, or visit the FAQs on this page.";
+      "I couldn't find that in the FAQs. Try asking about returns, payments, delivery, invoices, or part types.";
 
     setMessages((currentMessages) => [
       ...currentMessages,
       { role: "user", content: submittedQuestion },
       { role: "assistant", content: answer },
     ]);
+    setShowSuggestions(false);
+    setIsQuestionMenuOpen(false);
     setQuestion("");
   };
 
@@ -129,7 +133,7 @@ function FaqChatbot() {
             {messages.map((message, index) => (
               <p
                 key={`${message.role}-${index}`}
-                className={`max-w-[90%] whitespace-pre-line rounded-2xl px-3 py-2 text-xs leading-5 ${
+                className={`max-w-[95%] whitespace-pre-line rounded-2xl px-3 py-2.5 text-[13px] leading-5 ${
                   message.role === "user"
                     ? "ml-auto rounded-br-sm bg-emerald-600 text-white"
                     : "mr-auto rounded-bl-sm bg-white/80 text-slate-700 dark:bg-slate-800 dark:text-slate-200"
@@ -139,21 +143,57 @@ function FaqChatbot() {
               </p>
             ))}
 
-            <div className="space-y-2 pt-1">
-              <p className="px-1 text-[10px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                Common questions
-              </p>
-              {faqs.map((faq) => (
+            {showSuggestions && (
+              <div className="space-y-2 pt-1">
+                <p className="px-1 text-[10px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  Common questions
+                </p>
+                {faqs.map((faq) => (
+                  <button
+                    key={faq.question}
+                    type="button"
+                    className="block w-full rounded-xl border border-emerald-700/15 bg-white/55 px-3 py-2 text-left text-[11px] leading-4 text-emerald-800 transition hover:border-emerald-600/40 hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-emerald-300/15 dark:bg-slate-900/50 dark:text-emerald-200 dark:hover:bg-emerald-400/10"
+                    onClick={() => askQuestion(faq.question)}
+                  >
+                    {faq.question}
+                  </button>
+                ))}
+              </div>
+            )}
+            {!showSuggestions && (
+              <div className="pt-1">
                 <button
-                  key={faq.question}
                   type="button"
-                  className="block w-full rounded-xl border border-emerald-700/15 bg-white/55 px-3 py-2 text-left text-[11px] leading-4 text-emerald-800 transition hover:border-emerald-600/40 hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-emerald-300/15 dark:bg-slate-900/50 dark:text-emerald-200 dark:hover:bg-emerald-400/10"
-                  onClick={() => askQuestion(faq.question)}
+                  aria-controls="faq-question-menu"
+                  aria-expanded={isQuestionMenuOpen}
+                  className="flex w-full items-center justify-between rounded-xl border border-emerald-700/15 bg-white/55 px-3 py-2 text-left text-xs font-medium text-emerald-800 transition hover:border-emerald-600/40 hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-emerald-300/15 dark:bg-slate-900/50 dark:text-emerald-200 dark:hover:bg-emerald-400/10"
+                  onClick={() =>
+                    setIsQuestionMenuOpen((isMenuOpen) => !isMenuOpen)
+                  }
                 >
-                  {faq.question}
+                  Ask another question
+                  <span aria-hidden="true">
+                    {isQuestionMenuOpen ? "−" : "+"}
+                  </span>
                 </button>
-              ))}
-            </div>
+                <div
+                  id="faq-question-menu"
+                  className="mt-2 space-y-2"
+                  hidden={!isQuestionMenuOpen}
+                >
+                  {faqs.map((faq) => (
+                    <button
+                      key={faq.question}
+                      type="button"
+                      className="block w-full rounded-xl border border-emerald-700/15 bg-white/55 px-3 py-2 text-left text-[11px] leading-4 text-emerald-800 transition hover:border-emerald-600/40 hover:bg-emerald-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:border-emerald-300/15 dark:bg-slate-900/50 dark:text-emerald-200 dark:hover:bg-emerald-400/10"
+                      onClick={() => askQuestion(faq.question)}
+                    >
+                      {faq.question}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
 
