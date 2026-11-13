@@ -46,7 +46,7 @@ function NavBar({ isDarkMode, onToggleTheme }) {
     <header className="sticky top-0 z-50 mx-auto w-[calc(100%-2rem)] max-w-[1360px] pt-3 sm:w-[calc(100%-3rem)] sm:pt-5">
       <nav
         aria-label="Main navigation"
-        className="glass-panel flex min-h-11 items-center justify-between rounded-full border px-4 transition-[background-color,border-color,box-shadow] duration-300 sm:px-6"
+        className="glass-panel flex min-h-14 items-center justify-between rounded-full border px-4 transition-[background-color,border-color,box-shadow] duration-300 sm:px-6"
       >
         <Brand />
 
