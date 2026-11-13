@@ -24,6 +24,7 @@ const FinalCtaSection = lazy(() => import("./components/FinalCtaSection.jsx"));
 const FooterSection = lazy(() => import("./components/FooterSection.jsx"));
 const BackToTopButton = lazy(() => import("./components/BackToTopButton.jsx"));
 const AuthPage = lazy(() => import("./components/AuthPage.jsx"));
+const FaqChatbot = lazy(() => import("./components/FaqChatbot.jsx"));
 
 function PageLoader() {
   return (
@@ -163,6 +164,9 @@ function App() {
             element={<Navigate to="/account?mode=signup" replace />}
           />
         </Routes>
+      </Suspense>
+      <Suspense fallback={null}>
+        <FaqChatbot />
       </Suspense>
     </div>
   );
