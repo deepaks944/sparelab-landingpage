@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal.jsx";
 import trackEvent from "../utils/analytics.js";
+import faqs from "../data/faqs.js";
 
 const vendorTiers = [
   {
@@ -30,34 +31,6 @@ const buyerSteps = [
   ["Order", "Confirm the written quote and use its payment instructions."],
   ["Track", "Follow dispatch and delivery updates through SpareLab."],
   ["Settle", "Delivery is checked before vendor settlement under agreed terms."],
-];
-
-const faqs = [
-  {
-    question: "Can I return a part if it does not fit?",
-    answer:
-      "Check the return window and fitment conditions on the written quote before ordering. Keep the packaging and contact support promptly if the item is damaged, incorrect, or does not match the confirmed fitment. Eligibility depends on the item and its order terms.",
-  },
-  {
-    question: "Who receives my payment?",
-    answer:
-      "The proposed SpareLab flow is buyer payment to SpareLab, followed by vendor settlement after delivery confirmation and order checks. Payment instructions and the applicable order terms must be confirmed on your quote before paying.",
-  },
-  {
-    question: "How long does delivery take, and where do you deliver?",
-    answer:
-      "Delivery availability and ETA depend on the part, dispatch location, and destination. Ask for the confirmed delivery estimate and serviceability for your pin code with the quote; do not rely on an unconfirmed estimate.",
-  },
-  {
-    question: "Will I get a GST invoice?",
-    answer:
-      "GST invoice availability and the invoice entity/GSTIN should be stated on the quote. Share accurate billing details before placing the order and confirm the invoice requirements with SpareLab.",
-  },
-  {
-    question: "How do you label Genuine, OEM, and aftermarket parts?",
-    answer:
-      "Listings should identify the part's stated source and condition. Genuine/OE or authorised claims need supporting evidence; OEM/OES and aftermarket are not interchangeable labels. Ask for brand, part number, condition, and warranty details before ordering.",
-  },
 ];
 
 const legalSummaries = [
