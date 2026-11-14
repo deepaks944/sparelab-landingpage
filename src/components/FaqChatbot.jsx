@@ -84,7 +84,7 @@ function FaqChatbot() {
           id="faq-chat-panel"
           aria-labelledby="faq-chat-title"
           aria-keyshortcuts="Escape"
-          className="glass-panel mb-3 flex h-[min(34rem,70vh)] w-[calc(100vw-2rem)] max-w-96 flex-col overflow-hidden rounded-2xl border shadow-2xl"
+          className="glass-panel faq-chat-panel mb-3 flex h-[min(34rem,70vh)] w-[calc(100vw-2rem)] max-w-96 flex-col overflow-hidden rounded-2xl border shadow-2xl"
           onKeyDown={(event) => {
             if (event.key === "Escape") closeChat();
           }}

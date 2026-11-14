@@ -187,6 +187,16 @@ html.dark::-webkit-scrollbar-thumb {
     inset 0 1px 0 rgb(255 255 255 / 7%);
 }
 
+.glass-panel.faq-chat-panel {
+  background-color: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.dark .glass-panel.faq-chat-panel {
+  background-color: #0f172a;
+}
+
 .dark .auth-navbar {
   border-color: rgb(255 255 255 / 18%);
 }
